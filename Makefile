@@ -6,7 +6,11 @@ TARGET	= osu-compress
 all:	CFLAGS += -g
 all:	$(TARGET)
 
-unix:	$(TARGET)
+unix64:	CFLAGS += -m64
+unix64:	$(TARGET)
+
+unix32:	CFLAGS += -m32
+unix32:	$(TARGET)
 
 $(TARGET):
 	$(CC) main.c -o $@ $(CFLAGS) $(LFLAGS)
