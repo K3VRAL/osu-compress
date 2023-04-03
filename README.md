@@ -8,7 +8,7 @@ Open up your command prompt/terminal, and go to the directory where the `osu-com
 
 ## Installation
 
-You can download the executable from the [Releases]() tab in GitHub.
+You can download the executable from the [Releases](https://github.com/K3VRAL/osu-compress/releases) tab in GitHub.
 
 You can also compile the project as shown below.
 
