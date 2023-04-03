@@ -14,8 +14,12 @@ You can also compile the project as shown below.
 
 ## Compiling
 
-Before you can make the project, you will need `make`, `gcc`/`x86_64-w64-mingw32-gcc`/`i686-w64-mingw32-gcc`, and pkg-config. Once they have been installed, write `make OPTION`, and a new executable should be created.
+Before you can make the project, you will need to [download and install libosu](https://github.com/K3VRAL/libosu).
 
-To make an executable for the Unix eviroment, for the 64-bit version, use `make unix64`, for the 32-bit version, use `make unix32`, which will create the `osu-compress` executable.
+The tools you will also need before you can do anything is `make`, `gcc`/`x86_64-w64-mingw32-gcc`/`i686-w64-mingw32-gcc`, and `pkg-config`.
 
-To make an executable for the Windows enviroment, for the 64-bit version, use `make win64`, for the 32-bit version, use `make win32`, which will create the `osu-compress.exe` executable.
+Once they have been installed, write `make OPTION`, and a new executable should be created.
+
+To make an executable for the Unix eviroment, for a debuggable executable, use `make`, for the 64-bit version, use `make unix64`, for the 32-bit version, use `make unix32`, which will create the `osu-compress` executable.
+
+To make an executable for the Windows enviroment, you will need to make the correct `libosu.dll` version and move it into the project directory where the `Makefile` is at, for the 64-bit version, use `make win64`, for the 32-bit version, use `make win32`, which will create the `osu-compress.exe` executable.

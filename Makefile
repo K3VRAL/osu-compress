@@ -18,9 +18,11 @@ $(TARGET):
 TARGET_WIN	= osu-compress.exe
 
 win64:	CC = x86_64-w64-mingw32-gcc
+win64:	LFLAGS += -L.
 win64:	$(TARGET_WIN)
 
 win32:	CC = i686-w64-mingw32-gcc
+win32:	LFLAGS += -L.
 win32:	$(TARGET_WIN)
 
 $(TARGET_WIN):
