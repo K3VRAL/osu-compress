@@ -3,6 +3,11 @@
 
 #include <osu.h>
 
+char *get_by_line(FILE *fp) {
+	char *line = NULL;
+	return line;
+}
+
 int main(int argc, char **argv) {
 	if (argc != 3) {
 		printf("ERROR: Please provide a beatmap to compress, and an output name.\n");
@@ -48,12 +53,10 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t read;
-	while ((read = getline(&line, &len, fpt)) != -1) {
+	char line[2048] = {0};
+	while (fgets(line, sizeof(line), fpt)) {
 		if (strncmp("[Editor]", line, 8) == 0) {
-			while ((read = getline(&line, &len, fpt) != -1)) {
+			while (fgets(line, sizeof(line), fpt)) {
 				if (strcmp("\r\n", line) == 0 || *line == '\n') {
 					break;
 				}
