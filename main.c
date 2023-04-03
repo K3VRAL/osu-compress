@@ -68,6 +68,7 @@ int main(int argc, char **argv) {
 	}
 	
 	fclose(fpt);
+	remove(temp);
 	free(temp);
 	fclose(fpo);
 
