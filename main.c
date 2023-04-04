@@ -53,7 +53,7 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	char line[2048] = {0};
+	char line[8192] = {0};
 	while (fgets(line, sizeof(line), fpt)) {
 		if (strncmp("[Editor]", line, 8) == 0) {
 			while (fgets(line, sizeof(line), fpt)) {
