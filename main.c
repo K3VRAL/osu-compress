@@ -3,11 +3,6 @@
 
 #include <osu.h>
 
-char *get_by_line(FILE *fp) {
-	char *line = NULL;
-	return line;
-}
-
 int main(int argc, char **argv) {
 	if (argc != 3) {
 		printf("ERROR: Please provide a beatmap to compress, and an output name.\n");
@@ -47,9 +42,16 @@ int main(int argc, char **argv) {
 	}
 
 	// Editor is unnecessary
+	// TODO Until I figure out when osu stops generating the trailing decimals, it will not be touched
 	FILE *fpo = fopen(*(argv + 2), "w");
 	if (fpo == NULL) {
 		printf("ERROR: Unable to write to file.\n");
+		return 1;
+	}
+
+	fpi = fopen(*(argv + 1), "r");
+	if (fpi == NULL) {
+		printf("ERROR: Reading file again provided does not exsist, or cannot be read.\n");
 		return 1;
 	}
 
@@ -63,10 +65,30 @@ int main(int argc, char **argv) {
 			}
 			continue;
 		}
+		if (strncmp("[TimingPoints]", line, 14) == 0) {
+			while (fgets(line, sizeof(line), fpt)) {
+				if (strcmp("\r\n", line) == 0 || *line == '\n') {
+					break;
+				}
+			}
+			while (fgets(line, sizeof(line), fpi)) {
+				if (strncmp("[TimingPoints]", line, 14) == 0) {
+					do {
+						fputs(line, fpo);
+						if (strcmp("\r\n", line) == 0 || *line == '\n') {
+							break;
+						}
+					} while (fgets(line, sizeof(line), fpi));
+					break;
+				}
+			}
+			continue;
+		}
 
 		fputs(line, fpo);
 	}
 	
+	fclose(fpi);
 	fclose(fpt);
 	remove(temp);
 	free(temp);
